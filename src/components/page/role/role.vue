@@ -126,6 +126,8 @@
                     }).then(result=>{
                         if (result.code !=200) {
                             callback(new Error(result.message));
+                        }else{
+                            callback();
                         }
                     })
                 } else {

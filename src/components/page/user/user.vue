@@ -100,7 +100,7 @@
                     width="100">
                 <template slot-scope="scope">
                     <el-button v-per="['sys:user:edit']" @click="handleEdit(scope.$index, scope.row)" type="text" size="small">编辑</el-button>
-                    <el-button v-per="['sys:user:del']" @click="delRole(scope.row)" style="color: red" type="text" size="small">删除</el-button>
+                    <el-button v-per="['sys:user:delete']" @click="delRole(scope.row)" style="color: red" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -187,6 +187,8 @@
                     }).then(result=>{
                         if (result.code !=200) {
                             callback(new Error(result.message));
+                        }else {
+                            callback();
                         }
                     })
                 } else {

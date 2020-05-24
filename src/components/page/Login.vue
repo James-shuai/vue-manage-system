@@ -21,20 +21,19 @@
                 <div class="login-btn">
                     <el-button type="primary" @click="submitForm()">登录</el-button>
                 </div>
-                <p class="login-tips">Tips : 用户名admin，密码1234。</p>
+                <p class="login-tips">Tips : 用户名test，密码1234。</p>
             </el-form>
         </div>
     </div>
 </template>
 
 <script>
-import sidebar from '../common/Sidebar';
 let Base64 = require('js-base64').Base64;
 export default {
     data: function() {
         return {
             param: {
-                username: 'admin',
+                username: 'test',
                 password: '1234',
             },
             menuList:'',
@@ -46,14 +45,19 @@ export default {
             this.$refs.login.validate(valid => {
                 if (valid) {
                   //用户名密码校验
-                  var encode = Base64.encode('mengxuegu-pc:mengxuegu-secret');
+                  var encode = Base64.encode('cloud-pc:cloud-secret');
                   var postdatsss =
                     "grant_type=" +
                     "password&username=" +
                     this.param.username +
                     "&password=" +
                     this.param.password;
-
+                    const loading = this.$loading({
+                        lock: true,
+                        text: '登陆中',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
+                    });
                   this.$request({
                     url:'/auth/oauth/token',
                     method:'post',
@@ -92,6 +96,7 @@ export default {
                       },
                     }).then(result=>{
                       if (result.code === 200) {
+                          loading.close()
                           this.$message.success('登录成功');
                           localStorage.setItem('menuList',JSON.stringify(result.data))
                           localStorage.setItem('ms_username', result.message);
@@ -102,6 +107,7 @@ export default {
                   }).catch(error => {
                     this.$message.error('用户名或密码错误');
                     console.log('异常：'+error)
+                      loading.close()
                   })
 
                 } else {
