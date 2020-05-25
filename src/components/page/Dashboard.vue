@@ -67,30 +67,21 @@
                 </el-row>
                 <el-card shadow="hover" style="height:403px;">
                     <div slot="header" class="clearfix">
-                        <span>待办事项</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>
+                        <span>说明</span>
+                        <div style="padding-top: 20px">
+                            <span>后台模板 <el-link type="primary" href="https://github.com/James-shuai/vue-manage-system.git" target="_blank">Git地址</el-link></span>
+                        </div>
+                        <div style="padding-top: 20px">
+                            <span>后台接口项目 <el-link type="primary" href="https://github.com/James-shuai/cloud-oauth2-parent.git" target="_blank">Git地址</el-link></span>
+                        </div>
+                        <div style="padding-top: 20px">
+                            <span>后台模板原创作者 <el-link type="primary" href="https://github.com/lin-xin/vue-manage-system" target="_blank">Git地址</el-link></span>
+                        </div>
+                        <div style="padding-top: 20px">
+                            <span style="font-weight: bold">别忘了您的 Star★ 哦</span>
+                        </div>
                     </div>
-                    <el-table :show-header="false" :data="todoList" style="width:100%;">
-                        <el-table-column width="40">
-                            <template slot-scope="scope">
-                                <el-checkbox v-model="scope.row.status"></el-checkbox>
-                            </template>
-                        </el-table-column>
-                        <el-table-column>
-                            <template slot-scope="scope">
-                                <div
-                                    class="todo-item"
-                                    :class="{'todo-item-del': scope.row.status}"
-                                >{{scope.row.title}}</div>
-                            </template>
-                        </el-table-column>
-                        <el-table-column width="60">
-                            <template>
-                                <i class="el-icon-edit"></i>
-                                <i class="el-icon-delete"></i>
-                            </template>
-                        </el-table-column>
-                    </el-table>
+
                 </el-card>
             </el-col>
         </el-row>
